@@ -1,0 +1,83 @@
+# CEO-Plan — KI-gestützte Strategie-Extraktion (EOS/Traction)
+
+Ein Skill für KI-Agenten (Claude Code / Cowork), der den **impliziten Strategieplan eines Geschäftsführers aufs Papier holt** — durch ein hartnäckiges, sokratisches Interview, eine Frage nach der anderen. Aus dem protokollierten Gespräch erzeugt eine **Multi-Agenten-Kaskade** anschließend einen schriftlichen, unabhängig geprüften Unternehmensplan.
+
+> Kurz gesagt: Viele inhabergeführte Unternehmen *haben* einen Plan — aber nur im Kopf des Gründers. Dieser Skill zwingt ihn ans Licht und macht ihn für die nächste Führungsebene nutzbar.
+
+## Das Problem
+
+Ein typisches Muster in wachsenden Unternehmen:
+
+- Der Gründer ist **Visionär**, aber der **Integrator-Sitz** (operative Umsetzung) ist faktisch unbesetzt.
+- Es gibt keine mittlere Ebene, weil **jede Entscheidung wieder beim Chef landet**.
+- „Übernimm Verantwortung" heißt in der Praxis „übernimm Schuld" — weil Entscheidungs- und Finanzkompetenzen nie schriftlich definiert wurden.
+- Einmal getroffene Entscheidungen werden **Wochen später informell wieder aufgemacht** und stoppen die Umsetzung.
+
+Die Wurzel ist fast nie „faule Mitarbeiter", sondern **nicht ausgesprochene Erwartungen und nicht delegierte Entscheidungshoheit**.
+
+## Was der Skill tut
+
+Vier Stufen, bewusst in **drei frischen Kontexten** (gegen „Context Rot" — Qualitätsverlust langer LLM-Kontexte):
+
+```mermaid
+flowchart LR
+    A[1. Interview<br/>Hauptagent + GF] --> B[2. DoD-Gate<br/>explizite Abnahme]
+    B --> C[3. Synthese<br/>Subagent, frischer Kontext]
+    C --> D[4. Review<br/>Subagent, frischer Kontext]
+    D -->|FREIGABE| E[plan-final.md]
+    D -->|NACHBESSERN| A
+    A -.schreibt.-> L[(plan-log.md<br/>append-only)]
+    C -.liest nur.-> L
+    D -.prüft gegen.-> L
+```
+
+1. **Interview** — grillt den GF Frage für Frage durch das EOS/Traction-Framework und protokolliert jede Frage + Antwort sofort in ein append-only Logbuch (`plan-log.md`).
+2. **DoD-Gate** — prüft eine harte „Definition of Done" und holt die **ausdrückliche Abnahme** des GF ein. Erst dann geht es weiter.
+3. **Synthese-Subagent** — liest *nur* das Logbuch (kein Gesprächsgedächtnis) und destilliert daraus `plan-final.md`.
+4. **Review-Subagent** — prüft den Plan unabhängig und kritisch gegen das Logbuch und dieselbe DoD (`plan-review.md`).
+
+## Warum die Architektur so gebaut ist
+
+- **Eine Frage pro Runde, keine Antwortempfehlungen.** Der Plan muss in den *eigenen Worten* des GF entstehen — ein abgenickter Plan wird später verleugnet, ein selbst formulierter nicht.
+- **Sokratischer Modus**, wenn der GF ausweicht: zerlegen, am realen Fall konkretisieren, Schwellen von beiden Seiten einkreisen (z. B. Euro-Grenzen über einen „Zuviel-Fall" und einen „Bagatell-Fall").
+- **Getrennte Kontexte** für Synthese und Review verhindern, dass das Modell aus dem Gesprächsverlauf Dinge „dazuerfindet", die nie gesagt wurden.
+- **Verbindlichkeits-Layer** gegen das stille Wiederaufmachen: Entscheidungs-Steckbrief (Zahlen/Annahmen), Revisionstrigger (messbare Bedingung für Wiedervorlage) und eine Wiedereröffnungsregel.
+
+## Methodische Grundlage
+
+Inhaltlich entlang der sechs EOS-Komponenten aus ***Traction* von Gino Wickman**: Vision, Menschen/Struktur, Daten, Themen, Prozesse, Umsetzung — mit dem **Accountability Chart** als Rückgrat (wer besitzt welchen Sitz, mit welcher Entscheidungs- und Finanzkompetenz, welchem Budgetrahmen und welchem Prüfvorbehalt).
+
+## Ergebnisartefakte
+
+| Datei | Inhalt |
+|---|---|
+| `plan-log.md` | Quelle der Wahrheit — jede Frage + Antwort, append-only |
+| `plan-final.md` | Plan inkl. Accountability Chart, Scorecard, Kernprozessen, 90-Tage-Rocks, Entscheidungsregister, Verbindlichkeitsklausel |
+| `plan-review.md` | unabhängiger Prüfbericht (FREIGABE / NACHBESSERN) |
+
+## Struktur dieses Repos
+
+```
+skill/
+  SKILL.md              # Haupt-Skill: Interview-Kaskade, Phasen, DoD-Gate
+  agents/
+    synthesizer.md      # Auftrag des Synthese-Subagenten
+    reviewer.md         # Auftrag des Review-Subagenten
+examples/
+  plan-log.example.md   # fiktives Beispiel (Beispiel GmbH) — keine echten Daten
+```
+
+## Beispiel
+
+`examples/plan-log.example.md` zeigt anhand einer **frei erfundenen „Beispiel GmbH"**, wie eine Interview-Runde im Logbuch aussieht — inklusive sokratischer Herausarbeitung einer Finanzkompetenz-Schwelle.
+
+> ⚠️ Echte Logbücher enthalten vertrauliche Unternehmens- und Personendaten und gehören **niemals** in ein öffentliches Repository. Dieses Beispiel ist vollständig fiktiv.
+
+## Lizenz
+
+[MIT](./LICENSE) © 2026 Julian Schorn
+
+## Autor
+
+**Julian Schorn** — KI-gestützte Führung & Organisation · Leadership + AI Transformation
+LinkedIn: [in/julian-schorn](https://www.linkedin.com/in/julian-schorn)
