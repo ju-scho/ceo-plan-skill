@@ -64,14 +64,22 @@ skill/
     synthesizer.md      # Auftrag des Synthese-Subagenten
     reviewer.md         # Auftrag des Review-Subagenten
 examples/
-  plan-log.example.md   # fiktives Beispiel (Beispiel GmbH) — keine echten Daten
+  plan-log.example.md     # INPUT:  das protokollierte Interview (14 Runden)
+  plan-final.example.md   # OUTPUT: der fertige Unternehmensplan
+  plan-review.example.md  # QA:     unabhängiger Prüfbericht (FREIGABE/NACHBESSERN)
 ```
 
-## Beispiel
+## Beispiel — Input → Output → QA
 
-`examples/plan-log.example.md` zeigt anhand einer **frei erfundenen „Beispiel GmbH"**, wie eine Interview-Runde im Logbuch aussieht — inklusive sokratischer Herausarbeitung einer Finanzkompetenz-Schwelle.
+Ein durchgängiges, **frei erfundenes** Beispiel („Beispiel GmbH", ein Handwerks-SaaS-Anbieter) zeigt die komplette Kaskade:
 
-> ⚠️ Echte Logbücher enthalten vertrauliche Unternehmens- und Personendaten und gehören **niemals** in ein öffentliches Repository. Dieses Beispiel ist vollständig fiktiv.
+1. **[`plan-log.example.md`](examples/plan-log.example.md)** — das *Interview*: 14 protokollierte Runden über alle EOS-Phasen, inkl. sokratischer Herausarbeitung einer Finanzkompetenz-Schwelle.
+2. **[`plan-final.example.md`](examples/plan-final.example.md)** — der *Output*, und hier wird es operativ: vollständiges **Accountability Chart** (sechs Sitze mit Entscheidungs-/Finanzkompetenz, Prüfvorbehalt, Budgetrahmen), **Scorecard**, **Kernprozesse**, fünf **90-Tage-Rocks** mit Eigentümer + Datum, **Entscheidungsregister** mit Revisionstriggern und Verbindlichkeitsklausel.
+3. **[`plan-review.example.md`](examples/plan-review.example.md)** — die *Qualitätssicherung*: ein unabhängiger Subagent prüft den Plan gegen das Logbuch und dieselbe Definition of Done — acht Prüfpunkte, dokumentiertes Verdikt.
+
+So entsteht aus einem Gespräch ein Dokument, mit dem die nächste Führungsebene **am Montag arbeiten kann**: Wer entscheidet was, bis zu welchem Euro-Betrag, woran Erfolg gemessen wird und was in den nächsten 90 Tagen passiert.
+
+> ⚠️ Echte Logbücher und Pläne enthalten vertrauliche Unternehmens- und Personendaten und gehören **niemals** in ein öffentliches Repository. Dieses Beispiel ist vollständig fiktiv.
 
 ## Lizenz
 
