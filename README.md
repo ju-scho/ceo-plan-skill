@@ -81,6 +81,20 @@ So entsteht aus einem Gespräch ein Dokument, mit dem die nächste Führungseben
 
 > ⚠️ Echte Logbücher und Pläne enthalten vertrauliche Unternehmens- und Personendaten und gehören **niemals** in ein öffentliches Repository. Dieses Beispiel ist vollständig fiktiv.
 
+## Quellen & Attribution
+
+Dieser Skill steht auf den Schultern zweier Vorarbeiten — beide hier ausdrücklich genannt:
+
+**Interview-Methodik — „Grill Me".**
+Die Grundidee, den Nutzer hartnäckig und sokratisch *eine Frage nach der anderen* zu „grillen", bis implizites Wissen explizit wird, ist an den **„Grill Me"-Skill** angelehnt, der von **Matt Pocock** populär gemacht wurde ([aihero.dev: „My ‚Grill Me' Skill Went Viral"](https://www.aihero.dev/my-grill-me-skill-has-gone-viral)). Eine offene Implementierung der Idee: **[Jekudy/grillme-skill](https://github.com/Jekudy/grillme-skill)**.
+Dieser Skill übernimmt das „eine Frage pro Runde"-Prinzip, weicht aber bewusst ab: **keine** Antwortempfehlungen, append-only Logbuch, EOS-spezifische Phasen und eine DoD-Gate-/Synthese-/Review-Kaskade.
+
+**Inhaltliches Framework — Traction / EOS.**
+Die sechs Komponenten (Vision, Menschen, Daten, Themen, Prozesse, Umsetzung) und das Accountability Chart stammen aus **„Traction: Get a Grip on Your Business"** von **Gino Wickman** (BenBella Books, 2011) und dem darauf aufbauenden **Entrepreneurial Operating System (EOS®)**.
+
+**Rechtlicher Hinweis.**
+Dieses Projekt ist eine **unabhängige, nicht-kommerzielle Umsetzung** und steht in **keiner Verbindung zu und wird nicht unterstützt von** EOS Worldwide, Gino Wickman oder Matt Pocock. „EOS" und „Traction" sind Marken bzw. Werke ihrer jeweiligen Rechteinhaber; die Nennung dient ausschließlich der Quellenangabe (nominative use). Es werden **keine geschützten Texte übernommen** — nur die frei nutzbaren methodischen Konzepte.
+
 ## Lizenz
 
 [MIT](./LICENSE) © 2026 Julian Schorn
